@@ -89,6 +89,7 @@ Epoch 900 | Learning Rate: 0.001 | Predicted (denormalized): 195.538
 
 Here are the results for the next 6 months (predicted + denormalized):
 
+### C++
 ```
 Predicted sales for month 1: 195.798
 Predicted sales for month 2: 194.213
@@ -96,4 +97,14 @@ Predicted sales for month 3: 188.08
 Predicted sales for month 4: 187.23
 Predicted sales for month 5: 188.532
 Predicted sales for month 6: 188.449
+```
+
+### Python
+```
+Predicted sales for month 1: 169.34533976203215
+Predicted sales for month 2: 176.61207955833908
+Predicted sales for month 3: 187.18853445697857
+Predicted sales for month 4: 197.21303494117075
+Predicted sales for month 5: 202.51877700473221
+Predicted sales for month 6: 205.96950227334116
 ```
