@@ -14,11 +14,15 @@ Here is the dataset used for the prediction:
 | Year | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec |
 |------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | 2023 | 205 | 196 | 141 | 112 | 163 | 242 | 816 | 1043| 950 | 529 | 308 | 214 |
-| 2024 | 176 | 146 | 109 | 110 | 135 | 160 | ... | X | X | X | X | X |
+| 2024 | 176 | 146 | 109 | 110 | 135 | 160 | ... | ... | ... | ... | ... | ... |
+
+## Purpose
+
+Given said dataset, we need to predict the last 6 months of sales.
 
 ## Result of the Program
 
-Here are the results from running the program:
+Here is the training logs of the ANN (Logging is commented out by default):
 
 ```
 Epoch 0   | Learning Rate: 0.01 | Predicted (denormalized): 728.565
@@ -81,4 +85,15 @@ Epoch 600 | Learning Rate: 0.001 | Predicted (denormalized): 196.206
 Epoch 700 | Learning Rate: 0.001 | Predicted (denormalized): 195.981
 Epoch 800 | Learning Rate: 0.001 | Predicted (denormalized): 195.759
 Epoch 900 | Learning Rate: 0.001 | Predicted (denormalized): 195.538
+```
+
+Here are the results for the next 6 months (predicted + denormalized):
+
+```
+Predicted sales for month 1: 195.798
+Predicted sales for month 2: 194.213
+Predicted sales for month 3: 188.08
+Predicted sales for month 4: 187.23
+Predicted sales for month 5: 188.532
+Predicted sales for month 6: 188.449
 ```
