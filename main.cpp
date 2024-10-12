@@ -26,30 +26,29 @@ public:
     VectorXd forward(const VectorXd &input) {
         // Hidden layer
         VectorXd hidden = weights_input_hidden * input + biases_hidden;
-        hidden = (1.0 / (1.0 + (-hidden.array()).exp())).matrix(); // Sigmoid activation
+        hidden = (1.0 / (1.0 + (-hidden.array()).exp())).matrix(); 
         
-        // Output layer
         VectorXd output = weights_hidden_output * hidden + biases_output;
-        output = (1.0 / (1.0 + (-output.array()).exp())).matrix(); // Sigmoid activation for output
+        output = (1.0 / (1.0 + (-output.array()).exp())).matrix(); 
         return output;
     }
 
     void train(const VectorXd &input, const VectorXd &target, double learningRate) {
-        // Forward pass
+        // forward
         VectorXd hidden = weights_input_hidden * input + biases_hidden;
         hidden = (1.0 / (1.0 + (-hidden.array()).exp())).matrix();
         
         VectorXd output = weights_hidden_output * hidden + biases_output;
         output = (1.0 / (1.0 + (-output.array()).exp())).matrix();
 
-        // Backpropagation
+        // backprop
         VectorXd output_error = output - target;
         VectorXd d_output = output_error.array() * (output.array() * (1 - output.array()));
         
         VectorXd hidden_error = weights_hidden_output.transpose() * d_output;
         VectorXd d_hidden = hidden_error.array() * (hidden.array() * (1 - hidden.array()));
 
-        // Update weights and biases
+        // update w & b
         weights_hidden_output -= learningRate * d_output * hidden.transpose();
         biases_output -= learningRate * d_output;
         weights_input_hidden -= learningRate * d_hidden * input.transpose();
@@ -58,10 +57,10 @@ public:
 };
 
 double getLearningRate(int epoch) {
-    // Define your learning rate schedule here
-    if (epoch < 200) return 0.01; // First 200 epochs
-    else if (epoch < 500) return 0.005; // Next 300 epochs
-    else return 0.001; // After 500 epochs
+    // testing different rates & combinations
+    if (epoch < 200) return 0.01; 
+    else if (epoch < 500) return 0.005; 
+    else return 0.001; 
 }
 
 int main() {
@@ -112,20 +111,18 @@ int main() {
             input(j) = normalized_data[i + j];
         }
 
-        VectorXd target(outputsize); // Ensure target is a single-element vector
+        VectorXd target(outputsize); // Ensure single-element vector
         target(0) = normalized_data[i + inputsize];
 
-        // Train the model using different learning rates
         for (int epoch = 0; epoch < numEpochs; ++epoch) {
             double learningRate = getLearningRate(epoch);
             net.train(input, target, learningRate);
 
-            // Print results for every 100 epochs
             if (epoch % 100 == 0) {
                 VectorXd output = net.forward(input);
                 double denormalized_prediction = ((output(0) - 0.1) / 0.8) * (maxval - minval) + minval;
 
-                // Add one more space when it's epoch 0
+                // formatting things
                 if (epoch == 0) {
                     cout << "Epoch " << epoch << "   | Learning Rate: " << learningRate
                          << " | Predicted (denormalized): " << denormalized_prediction << endl;
