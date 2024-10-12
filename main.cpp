@@ -14,7 +14,7 @@ private:
     VectorXd biases_hidden;
     MatrixXd weights_hidden_output;
     VectorXd biases_output;
-    
+
 public:
     NeuralNetwork(int inputsize, int hiddensize, int outputsize) {
         weights_input_hidden = MatrixXd::Random(hiddensize, inputsize);
@@ -27,7 +27,7 @@ public:
         // Hidden layer
         VectorXd hidden = weights_input_hidden * input + biases_hidden;
         hidden = (1.0 / (1.0 + (-hidden.array()).exp())).matrix(); // Sigmoid activation
-        
+
         // Output layer
         VectorXd output = weights_hidden_output * hidden + biases_output;
         output = (1.0 / (1.0 + (-output.array()).exp())).matrix(); // Sigmoid activation for output
@@ -38,14 +38,14 @@ public:
         // Forward pass
         VectorXd hidden = weights_input_hidden * input + biases_hidden;
         hidden = (1.0 / (1.0 + (-hidden.array()).exp())).matrix();
-        
+
         VectorXd output = weights_hidden_output * hidden + biases_output;
         output = (1.0 / (1.0 + (-output.array()).exp())).matrix();
 
         // Backpropagation
         VectorXd output_error = output - target;
         VectorXd d_output = output_error.array() * (output.array() * (1 - output.array()));
-        
+
         VectorXd hidden_error = weights_hidden_output.transpose() * d_output;
         VectorXd d_hidden = hidden_error.array() * (hidden.array() * (1 - hidden.array()));
 
@@ -95,6 +95,7 @@ int main() {
 
     NeuralNetwork net(inputsize, hiddensize, outputsize);
 
+    // Normalizing data
     double minval = *min_element(sales_data.begin(), sales_data.end());
     double maxval = *max_element(sales_data.begin(), sales_data.end());
 
@@ -106,35 +107,49 @@ int main() {
 
     const int numEpochs = 1000;
 
+    // Training the model
     for (int i = 0; i <= normalized_data.size() - inputsize - 1; i++) {
         VectorXd input(inputsize);
         for (int j = 0; j < inputsize; j++) {
             input(j) = normalized_data[i + j];
         }
 
-        VectorXd target(outputsize); // Ensure target is a single-element vector
+        VectorXd target(outputsize);
         target(0) = normalized_data[i + inputsize];
 
-        // Train the model using different learning rates
         for (int epoch = 0; epoch < numEpochs; ++epoch) {
             double learningRate = getLearningRate(epoch);
             net.train(input, target, learningRate);
-
-            // Print results for every 100 epochs
-            if (epoch % 100 == 0) {
-                VectorXd output = net.forward(input);
-                double denormalized_prediction = ((output(0) - 0.1) / 0.8) * (maxval - minval) + minval;
-
-                // Add one more space when it's epoch 0
-                if (epoch == 0) {
-                    cout << "Epoch " << epoch << "   | Learning Rate: " << learningRate
-                         << " | Predicted (denormalized): " << denormalized_prediction << endl;
-                } else {
-                    cout << "Epoch " << epoch << " | Learning Rate: " << learningRate
-                         << " | Predicted (denormalized): " << denormalized_prediction << endl;
-                }
-            }
+            
+            // TRAINING: UNCOMMENT IF NEED LOGGING
+            // if (epoch % 100 == 0) {
+            //     VectorXd output = net.forward(input);
+            //     double denormalized_prediction = ((output(0) - 0.1) / 0.8) * (maxval - minval) + minval;
+            //     cout << "Epoch " << epoch << " | Learning Rate: " << learningRate
+            //          << " | Predicted (denormalized): " << denormalized_prediction << endl;
+            // }
         }
+    }
+
+    int months_to_predict = 6; 
+    VectorXd input(inputsize);
+
+    for (int j = 0; j < inputsize; j++) {
+        input(j) = normalized_data[normalized_data.size() - inputsize + j];
+    }
+
+    vector<double> predictions; 
+    for (int m = 0; m < months_to_predict; m++) {
+        VectorXd output = net.forward(input);
+        double denormalized_prediction = ((output(0) - 0.1) / 0.8) * (maxval - minval) + minval;
+        predictions.push_back(denormalized_prediction);
+
+        cout << "Predicted sales for month " << m + 1 << ": " << denormalized_prediction << endl;
+
+        for (int j = 0; j < inputsize - 1; j++) {
+            input(j) = input(j + 1); // Shift left
+        }
+        input(inputsize - 1) = (output(0) - 0.1) / 0.8;   
     }
 
     return 0;
