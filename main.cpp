@@ -128,7 +128,7 @@ int main() {
 
             //  cout << "Epoch " << epoch << " | Learning Rate: " << learningRate
             //       << " | Predicted (denormalized): " << denormalized_prediction << endl;
-            }
+            //}
         }
     }
 
