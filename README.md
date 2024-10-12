@@ -20,6 +20,7 @@ Here is the dataset used for the prediction:
 
 Here are the results from running the program:
 
+```
 Epoch 0   | Learning Rate: 0.01 | Predicted (denormalized): 728.565
 Epoch 100 | Learning Rate: 0.01 | Predicted (denormalized): 631.951
 Epoch 200 | Learning Rate: 0.005 | Predicted (denormalized): 548.123
@@ -80,3 +81,4 @@ Epoch 600 | Learning Rate: 0.001 | Predicted (denormalized): 196.206
 Epoch 700 | Learning Rate: 0.001 | Predicted (denormalized): 195.981
 Epoch 800 | Learning Rate: 0.001 | Predicted (denormalized): 195.759
 Epoch 900 | Learning Rate: 0.001 | Predicted (denormalized): 195.538
+```
