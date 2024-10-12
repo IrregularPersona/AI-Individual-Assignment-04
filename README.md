@@ -1,6 +1,6 @@
 # Laptop Sales Prediction using Artificial Neural Networks
 
-This project implements a sales prediction model for laptops using an Artificial Neural Network (ANN). The model is designed to predict future sales based on historical data.
+This assignment is aimed to predict the sales of Laptops in the month of July given the sales trends from previous months.
 
 ## Running the program
 
@@ -14,7 +14,7 @@ Here is the dataset used for the prediction:
 | Year | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec |
 |------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | 2023 | 205 | 196 | 141 | 112 | 163 | 242 | 816 | 1043| 950 | 529 | 308 | 214 |
-| 2024 | 176 | 146 | 109 | 110 | 135 | 160 | ... | ... | ... | ... | ... | ... |
+| 2024 | 176 | 146 | 109 | 110 | 135 | 160 | ... | X | X | X | X | X |
 
 ## Result of the Program
 
