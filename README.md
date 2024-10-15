@@ -4,8 +4,12 @@ This assignment is aimed to predict the sales of Laptops in the month of July gi
 
 ## Running the program
 
+### FOR C++
 Requires the Eigen3 library. Easier to do using Linux/MVS. So if you're a windows user, either download WSL / use MVS. 
 Preferably use WSL, and download Eigen and Make. Calling Make directly should compile everything all at once without an issue.
+
+### FOR Python
+Requires Numpy.
 
 ## Dataset
 
