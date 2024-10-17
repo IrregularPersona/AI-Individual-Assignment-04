@@ -1,0 +1,10 @@
+enter environment:
+    source manim-env/bin/activate
+
+exit environment:
+    deactivate
+
+move output -> windows:
+
+    1. cd media/videos/hello_manim/480p15/
+    2. cp hello_manim.mp4 /mnt/c/Users/ahmad/Desktop/

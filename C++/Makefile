@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -I /usr/include/eigen3 -Wall -O2
+CXXFLAGS = -I /usr/include/eigen3 -Wall -O3
 
 # Targets for each executable
 TARGETS = main test_main new_test
