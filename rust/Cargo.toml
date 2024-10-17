@@ -1,0 +1,9 @@
+[package]
+name = "rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ndarray = "0.15" # matrix + vec ops
+rand = "0.8" # rng
+csv = "1.1" # csv reading
