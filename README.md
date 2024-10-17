@@ -11,6 +11,9 @@ Preferably use WSL, and download Eigen and Make. Calling Make directly should co
 ### FOR Python
 Requires Numpy.
 
+### FOR Rust
+Requires ndarray.
+
 ## Dataset
 
 Here is the dataset used for the prediction:
@@ -112,6 +115,20 @@ Predicted sales for month 4: 197.21303494117075
 Predicted sales for month 5: 202.51877700473221
 Predicted sales for month 6: 205.96950227334116
 ```
+
+### Rust
+```
+Predictions for the next 6 months:
+Month 1: 167.48
+Month 2: 170.28
+Month 3: 175.82
+Month 4: 178.25
+Month 5: 178.43
+Month 6: 178.17
+```
+
+##### Note
+The Rust variant uses a dynamic RNG generator, thus causing the model to throw different values everytime.
 
 # Answering the questions:
 
