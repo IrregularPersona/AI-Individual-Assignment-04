@@ -112,3 +112,8 @@ Predicted sales for month 4: 197.21303494117075
 Predicted sales for month 5: 202.51877700473221
 Predicted sales for month 6: 205.96950227334116
 ```
+
+# Answering the questions:
+
+### Question F: Why the result of the prediction is accurate or not accurate? Explain briefly.
+Because, given the dataset and the training, the resulting data seems to be in-trend with the results, given that this is a prediction.
